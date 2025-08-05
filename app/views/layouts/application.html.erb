@@ -59,26 +59,26 @@
               <%= link_to "Home",
               movies_path,
               {
-                class: "nav-link #{current_page?(movies_path) && 'active'}",
-                "aria-current": "#{current_page?(movies_path) && 'page'}"
+                class: "nav-link #{current_page?(movies_path) && "active"}",
+                "aria-current": "#{current_page?(movies_path) && "page"}",
               } %>
             </li>
             <li class="nav-item">
-              <%= link_to "Link",  
-                movies_path,
+              <%= link_to "Link",
+              movies_path,
               {
-                class: "nav-link #{current_page?(movies_path) && 'active'}",
-                "aria-current": "#{current_page?(movies_path) && 'page'}"
+                class: "nav-link #{current_page?(movies_path) && "active"}",
+                "aria-current": "#{current_page?(movies_path) && "page"}",
               } %>
 
             </li>
             <li>
               <%= link_to "Add new movie",
-                new_movie_path, 
-                {
-                  class: "nav-link #{current_page?(new_movie_path) && 'active'}",
-                "aria-current": "#{current_page?(new_movie_path) && 'page'}" 
-                } %>
+              new_movie_path,
+              {
+                class: "nav-link #{current_page?(new_movie_path) && "active"}",
+                "aria-current": "#{current_page?(new_movie_path) && "page"}",
+              } %>
             </li>
           </ul>
         </div>
@@ -86,14 +86,20 @@
       </div>
     </nav>
 
-    <div style="color: green;">
-      <%= notice %>
-    </div>
+    <div class="container mt-3">
+      <% if notice.present? %>
+        <div class="alert alert-success" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
 
-    <div style="color: red;">
-      <%= alert %>
-    </div>
+      <% if alert.present? %>
+        <div class="alert alert-danger" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
