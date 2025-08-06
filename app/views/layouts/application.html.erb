@@ -17,89 +17,21 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
+    <%= render partial: "shared/cdn_assets" %>
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <!-- Connect Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-    >
-    <!-- Connect Bootstrap JavaScript and its dependencies -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    ></script>
-    <!-- Connect Font Awesome -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
-    ></script>
-
   </head>
 
   <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <%= link_to "Helper Methods 3", root_path, class: "navbar-brand" %>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <%= link_to "Home",
-              movies_path,
-              {
-                class: "nav-link #{current_page?(movies_path) && "active"}",
-                "aria-current": "#{current_page?(movies_path) && "page"}",
-              } %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Link",
-              movies_path,
-              {
-                class: "nav-link #{current_page?(movies_path) && "active"}",
-                "aria-current": "#{current_page?(movies_path) && "page"}",
-              } %>
-
-            </li>
-            <li>
-              <%= link_to "Add new movie",
-              new_movie_path,
-              {
-                class: "nav-link #{current_page?(new_movie_path) && "active"}",
-                "aria-current": "#{current_page?(new_movie_path) && "page"}",
-              } %>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </nav>
+    <%= render partial: "shared/navbar" %>
 
     <div class="container mt-3">
-      <% if notice.present? %>
-        <div class="alert alert-success" role="alert">
-          <%= notice %>
-        </div>
-      <% end %>
-
-      <% if alert.present? %>
-        <div class="alert alert-danger" role="alert">
-          <%= alert %>
-        </div>
-      <% end %>
-
+      <%= render partial: "shared/flash_messages" %>
       <%= yield %>
     </div>
+
   </body>
 </html>
