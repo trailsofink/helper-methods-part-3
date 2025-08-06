@@ -1,0 +1,18 @@
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug_inspector-1.2.0/ext/debug_inspector
+/home/joel/.rbenv/versions/3.4.1/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug_inspector-1.2.0/ext/debug_inspector
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4g73va sitelibdir\=./.gem.20250805-194359-4g73va clean
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug_inspector-1.2.0/ext/debug_inspector
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4g73va sitelibdir\=./.gem.20250805-194359-4g73va
+compiling debug_inspector.c
+linking shared-object debug_inspector.so
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug_inspector-1.2.0/ext/debug_inspector
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4g73va sitelibdir\=./.gem.20250805-194359-4g73va install
+/usr/bin/install -c -m 0755 debug_inspector.so ./.gem.20250805-194359-4g73va
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug_inspector-1.2.0/ext/debug_inspector
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4g73va sitelibdir\=./.gem.20250805-194359-4g73va clean

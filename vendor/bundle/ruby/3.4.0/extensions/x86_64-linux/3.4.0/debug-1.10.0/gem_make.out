@@ -1,0 +1,19 @@
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug-1.10.0/ext/debug
+/home/joel/.rbenv/versions/3.4.1/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-a5uphz sitelibdir\=./.gem.20250805-194359-a5uphz clean
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-a5uphz sitelibdir\=./.gem.20250805-194359-a5uphz
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-a5uphz sitelibdir\=./.gem.20250805-194359-a5uphz install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20250805-194359-a5uphz/debug
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/debug-1.10.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-a5uphz sitelibdir\=./.gem.20250805-194359-a5uphz clean

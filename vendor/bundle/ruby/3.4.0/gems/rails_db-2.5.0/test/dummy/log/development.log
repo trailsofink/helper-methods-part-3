@@ -1,0 +1,272 @@
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-01-24 11:09:16.442069', '2025-01-24 11:09:16.442071') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20151013203739)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "age" integer, "salary" decimal, "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151013203739') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20151013203757)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" text, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151013203757') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to PopulateData (20151013204027)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "salary", "bio", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "John Smith"], ["age", 30], ["salary", 123.45], ["bio", "This is text"], ["created_at", "2025-01-24 11:09:16.447935"], ["updated_at", "2025-01-24 11:09:16.447935"]]
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "bio", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Bob Jones"], ["age", 22], ["bio", "This is BIO"], ["created_at", "2025-01-24 11:09:16.448490"], ["updated_at", "2025-01-24 11:09:16.448490"]]
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "salary", "bio", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Anna Smith"], ["age", 28], ["salary", 100.0], ["bio", "This is another text"], ["created_at", "2025-01-24 11:09:16.448655"], ["updated_at", "2025-01-24 11:09:16.448655"]]
+  [1m[36mComment Create (0.0ms)[0m  [1m[32mINSERT INTO "comments" ("comment", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["comment", "This is comment #1"], ["user_id", 1], ["created_at", "2025-01-24 11:09:16.450811"], ["updated_at", "2025-01-24 11:09:16.450811"]]
+  [1m[36mComment Create (0.0ms)[0m  [1m[32mINSERT INTO "comments" ("comment", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["comment", "This is comment #2"], ["user_id", 1], ["created_at", "2025-01-24 11:09:16.450972"], ["updated_at", "2025-01-24 11:09:16.450972"]]
+  [1m[36mComment Create (0.0ms)[0m  [1m[32mINSERT INTO "comments" ("comment", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["comment", "This is comment #3"], ["user_id", 2], ["created_at", "2025-01-24 11:09:16.451101"], ["updated_at", "2025-01-24 11:09:16.451101"]]
+  [1m[36mComment Create (0.0ms)[0m  [1m[32mINSERT INTO "comments" ("comment", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["comment", "This is comment #4"], ["user_id", 3], ["created_at", "2025-01-24 11:09:16.451230"], ["updated_at", "2025-01-24 11:09:16.451230"]]
+  [1m[36mComment Create (0.0ms)[0m  [1m[32mINSERT INTO "comments" ("comment", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["comment", "This is comment #5"], ["user_id", 3], ["created_at", "2025-01-24 11:09:16.451353"], ["updated_at", "2025-01-24 11:09:16.451353"]]
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151013204027') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAccounts (20151014074454)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "users_count" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "account_id" integer[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_account_id" ON "users" ("account_id")[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mAccount Create (0.0ms)[0m  [1m[32mINSERT INTO "accounts" ("name", "users_count", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["name", "XYZ"], ["users_count", 3], ["created_at", "2025-01-24 11:09:16.455296"], ["updated_at", "2025-01-24 11:09:16.455296"]]
+  [1m[36mAccount Load (0.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" ORDER BY "accounts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Update All (0.0ms)[0m  [1m[33mUPDATE "users" SET "account_id" = ?[0m  [["account_id", 1]]
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151014074454') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateContacts (20151014074655)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "contacts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mContact Create (0.0ms)[0m  [1m[32mINSERT INTO "contacts" ("name", "email", "message", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "John"], ["email", "john@email.com"], ["message", "Please call me"], ["created_at", "2025-01-24 11:09:16.457841"], ["updated_at", "2025-01-24 11:09:16.457841"]]
+  [1m[36mContact Create (0.0ms)[0m  [1m[32mINSERT INTO "contacts" ("name", "email", "message", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Bob"], ["email", "bob@site.com"], ["message", "I want to participate"], ["created_at", "2025-01-24 11:09:16.458014"], ["updated_at", "2025-01-24 11:09:16.458014"]]
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151014074655') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddBd (20151014152932)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "dob" date[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Update (0.0ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2025-01-24 11:09:16.458632"], ["id", 1]]
+  [1m[36mUser Update (0.0ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2025-01-24 11:09:16.458856"], ["id", 2]]
+  [1m[36mUser Update (0.0ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2025-01-24 11:09:16.459007"], ["id", 3]]
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151014152932') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateProjects (20151014183823)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description_821760" varchar, "description_894905" varchar, "description_925884" varchar, "description_793507" varchar, "description_716927" varchar, "description_225695" varchar, "description_993507" varchar, "description_746637" varchar, "description_722954" varchar, "description_943970" varchar, "description_607183" varchar, "description_67050" varchar, "description_502821" varchar, "description_366136" varchar, "description_21974" varchar, "description_294634" varchar, "description_880520" varchar, "description_590228" varchar, "description_773759" varchar, "description_86742" varchar, "amount_292166" integer, "amount_493450" integer, "amount_778861" integer, "amount_668276" integer, "amount_822299" integer, "amount_822310" integer, "amount_578143" integer, "amount_28292" integer, "amount_553573" integer, "amount_531358" integer, "amount_50446" integer, "amount_181381" integer, "amount_707804" integer, "amount_505524" integer, "amount_457876" integer, "amount_205402" integer, "amount_385340" integer, "amount_197313" integer, "amount_931631" integer, "amount_102892" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151014183823') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddLongText (20151014184243)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Update (0.0ms)[0m  [1m[33mUPDATE "users" SET "bio" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["bio", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ligula arcu, commodo et mauris ut, efficitur aliquet ex. Aliquam iaculis justo maximus, dapibus nibh a, tincidunt enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque hendrerit pharetra nulla, ac euismod tellus rutrum non. Ut tortor enim, tincidunt vitae pharetra quis, tincidunt sit amet felis. Sed convallis nulla sed urna finibus aliquet. Aliquam a molestie orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum in finibus sem, ut sagittis enim.\nSed nulla sem, suscipit sit amet lobortis eget, gravida in lectus. In sagittis urna sit amet commodo egestas. Donec vulputate, orci ac gravida congue, orci arcu facilisis ante, sed blandit quam lacus ullamcorper eros. Duis vitae sem et eros luctus tempor et ut neque. Donec at molestie quam, vel gravida velit. Etiam eu consectetur massa, sit amet vehicula risus. Nullam elementum, neque non dignissim dignissim, arcu erat lobortis orci, quis venenatis eros nibh ac risus."], ["updated_at", "2025-01-24 11:09:16.459961"], ["id", 3]]
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151014184243') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to PopulateDb (20151015145740)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151015145740') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePayments (20151027192250)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "payments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal, "project_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_payments_on_project_id" ON "payments" ("project_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_contacts_on_name_and_email" ON "contacts" ("name", "email")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_salary" ON "users" ("salary")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151027192250') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddNonPkTable (20151027223149)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "projects_users" ("project_id" integer, "user_id" integer)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_users_on_project_id" ON "projects_users" ("project_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_users_on_user_id" ON "projects_users" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151027223149') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateLegacyAccounts (20151028191429)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "legacy_accounts" ("uuid" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151028191429') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddBooleanFieldToUser (20151121125538)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "active" boolean DEFAULT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20151121125538') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddStiModel (20170126124628)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "type" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20170126124628') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddDeletedAtToProjects (20180528134358)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "projects" ADD "deleted_at" datetime[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_on_deleted_at" ON "projects" ("deleted_at")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20180528134358') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCountryColumn (20210626083314)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "country" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20210626083314') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2025-01-24 13:09:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT id, name, users_count FROM accounts ORDER BY users_count desc LIMIT 10 OFFSET 0[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.3ms | Allocations: 533)
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect id, name, age from users order by age desc limit 10[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.2ms | Allocations: 357)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mCustomer Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."type" = ?[0m  [["type", "Customer"]]
+  [1m[36mAccount Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "accounts"[0m
+  Rendered home/index.html.erb within layouts/application (Duration: 8.2ms | Allocations: 7952)
+  Rendered layout layouts/application.html.erb (Duration: 192.6ms | Allocations: 138573)
+Completed 200 OK in 203ms (Views: 193.2ms | ActiveRecord: 1.1ms | Allocations: 153900)
+
+
+Started GET "/assets/application.debug-9e4109580aba17ed95c1d87e2dc14c3c5e63e6953b2cdd4d3674551ed9a2b2f6.css" for ::1 at 2025-01-24 13:09:21 +0200
+Started GET "/assets/application.debug-a1cb7dfbf90892f06b5c91607f1d134a954845da49f4def90ffc484e298dfb23.js" for ::1 at 2025-01-24 13:09:21 +0200
+Started GET "/rails/db" for ::1 at 2025-01-24 13:09:23 +0200
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (Duration: 1.7ms | Allocations: 843)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 1.5ms | Allocations: 1900)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.6ms | Allocations: 787)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.1ms | Allocations: 275)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.7ms | Allocations: 1184)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 79.0ms | Allocations: 60944)
+Completed 200 OK in 81ms (Views: 80.4ms | ActiveRecord: 0.1ms | Allocations: 61619)
+
+
+Started GET "/assets/rails_db/application.debug-f7c4d149f5a7e42e5f900c7e0f454055e2baa311b79aec7c34816e77d8329481.css" for ::1 at 2025-01-24 13:09:23 +0200
+Started GET "/assets/rails_db/application.debug-b68d73bfa75c10a9608a0ddbff28c38f96a3dd0fee187b37a39ae32277ddcd34.js" for ::1 at 2025-01-24 13:09:23 +0200
+Started GET "/assets/rails_db/logo_mini-e46c13b71074493bb7845fa9e5838957fc7f4825088d7474700e8ecad3a12cb0.png" for ::1 at 2025-01-24 13:09:23 +0200
+Started GET "/assets/rails_db/logo-72ddb38e7d2961f79f60a852fe496dbd533ffae37f9591ddf5c5ce3eb500b9c9.png" for ::1 at 2025-01-24 13:09:23 +0200
+Started GET "/rails/db/tables/accounts/data" for ::1 at 2025-01-24 13:09:24 +0200
+Processing by RailsDb::TablesController#data as JS
+  Parameters: {"table_id" => "accounts"}
+  [1m[36m Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "accounts"[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.2ms | Allocations: 120)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 8.4ms | Allocations: 8039)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 3.9ms | Allocations: 6143)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "accounts".* FROM "accounts" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 1.1ms | Allocations: 1033)
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "accounts"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "accounts"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.1ms | Allocations: 76)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 25.5ms | Allocations: 28564)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.js.erb (Duration: 26.7ms | Allocations: 30938)
+Completed 200 OK in 39ms (Views: 27.4ms | ActiveRecord: 1.0ms | Allocations: 33542)
+
+
+Started GET "/rails/db/tables/comments/data" for ::1 at 2025-01-24 13:09:26 +0200
+Processing by RailsDb::TablesController#data as JS
+  Parameters: {"table_id" => "comments"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 6.4ms | Allocations: 6367)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 6.2ms | Allocations: 6131)
+  [1m[36m Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 1.0ms | Allocations: 743)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 740)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 740)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 740)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 740)
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 26.5ms | Allocations: 26800)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.js.erb (Duration: 28.5ms | Allocations: 29519)
+Completed 200 OK in 34ms (Views: 27.3ms | ActiveRecord: 2.1ms | Allocations: 31248)
+
+
+Started GET "/rails/db/tables/comments/data?q%5Bs%5D=user_id+asc" for ::1 at 2025-01-24 13:09:29 +0200
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"q" => {"s" => "user_id asc"}, "table_id" => "comments"}
+  [1m[36m Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 11.2ms | Allocations: 6133)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 10.1ms | Allocations: 6131)
+  [1m[36m Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" ORDER BY "comments"."user_id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 1.1ms | Allocations: 779)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 1.0ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.8ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 775)
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 40.6ms | Allocations: 26026)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 41.2ms | Allocations: 26139)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.7ms | Allocations: 1209)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.3ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 583)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 52.5ms | Allocations: 39647)
+Completed 200 OK in 60ms (Views: 50.9ms | ActiveRecord: 2.4ms | Allocations: 41334)
+
+
+Started GET "/rails/db/tables/comments/data?q%5Bs%5D=user_id+desc" for ::1 at 2025-01-24 13:09:30 +0200
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"q" => {"s" => "user_id desc"}, "table_id" => "comments"}
+  [1m[36m Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 8.4ms | Allocations: 6134)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 6.5ms | Allocations: 6133)
+  [1m[36m Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" ORDER BY "comments"."user_id" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.9ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 775)
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 29.1ms | Allocations: 26044)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 29.2ms | Allocations: 26099)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.8ms | Allocations: 1209)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.3ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.1ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.3ms | Allocations: 583)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 36.4ms | Allocations: 39556)
+Completed 200 OK in 42ms (Views: 35.2ms | ActiveRecord: 2.0ms | Allocations: 41164)
+
+
+Started GET "/rails/db/tables/comments/data?q%5Bs%5D=user_id+asc" for ::1 at 2025-01-24 13:09:31 +0200
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"q" => {"s" => "user_id asc"}, "table_id" => "comments"}
+  [1m[36m Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 7.2ms | Allocations: 6133)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 6.3ms | Allocations: 6132)
+  [1m[36m Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" ORDER BY "comments"."user_id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.8ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.9ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 775)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 775)
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 27.7ms | Allocations: 25994)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 27.8ms | Allocations: 26049)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.9ms | Allocations: 1193)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.4ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.1ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.3ms | Allocations: 583)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 35.8ms | Allocations: 39337)
+Completed 200 OK in 41ms (Views: 34.5ms | ActiveRecord: 2.2ms | Allocations: 40918)
+
+

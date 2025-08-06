@@ -1,0 +1,1656 @@
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "accounts"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "users_count" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" text, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "contacts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "contacts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_contacts_on_name_and_email" ON "contacts" ("name", "email")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "legacy_accounts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "legacy_accounts" ("uuid" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "payments"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "payments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal, "project_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_payments_on_project_id" ON "payments" ("project_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "projects"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description_214636" varchar, "description_881927" varchar, "description_377910" varchar, "description_787561" varchar, "description_397939" varchar, "description_427609" varchar, "description_70125" varchar, "description_68088" varchar, "description_211155" varchar, "description_915979" varchar, "description_198834" varchar, "description_669085" varchar, "description_771" varchar, "description_519606" varchar, "description_500107" varchar, "description_277668" varchar, "description_706655" varchar, "description_617984" varchar, "description_312370" varchar, "description_239866" varchar, "amount_777579" integer, "amount_886090" integer, "amount_11955" integer, "amount_494653" integer, "amount_666834" integer, "amount_297923" integer, "amount_458470" integer, "amount_339355" integer, "amount_539001" integer, "amount_209067" integer, "amount_74088" integer, "amount_736364" integer, "amount_685429" integer, "amount_506310" integer, "amount_440103" integer, "amount_418280" integer, "amount_60289" integer, "amount_433505" integer, "amount_160749" integer, "amount_723751" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_on_deleted_at" ON "projects" ("deleted_at")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "projects_users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "projects_users" ("project_id" integer, "user_id" integer)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_users_on_project_id" ON "projects_users" ("project_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_users_on_user_id" ON "projects_users" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "age" integer, "salary" decimal, "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "account_id" integer, "dob" date, "active" boolean DEFAULT 1, "type" varchar, "country" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_account_id" ON "users" ("account_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_salary" ON "users" ("salary")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210626083314)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180528134358),
+(20170126124628),
+(20151121125538),
+(20151028191429),
+(20151027223149),
+(20151027192250),
+(20151015145740),
+(20151014184243),
+(20151014183823),
+(20151014152932),
+(20151014074655),
+(20151014074454),
+(20151013204027),
+(20151013203757),
+(20151013203739);[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2025-01-24 11:08:59.993132', '2025-01-24 11:08:59.993133') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'eb07e8bd50a1efed4dd9e6703b0cb4e782fa7a33', '2025-01-24 11:08:59.993407', '2025-01-24 11:08:59.993407') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------
+RailsDbHelpersTest: test_default_rails_db_data_table_works
+----------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:09:00.052706"], ["updated_at", "2025-01-24 11:09:00.052706"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.6ms | Allocations: 1286)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------------------
+RailsDbHelpersTest: test_default_rails_db_data_table_sql_works
+--------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:09:00.068021"], ["updated_at", "2025-01-24 11:09:00.068021"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.2ms | Allocations: 374)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------------------------
+RailsDbHelpersTest: test_rails_db_data_table_works_with_many_options
+--------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["age", 9999], ["created_at", "2025-01-24 11:09:00.069026"], ["updated_at", "2025-01-24 11:09:00.069026"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT id, name FROM users ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.1ms | Allocations: 119)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------------
+RailsDbHelpersTest: test_rails_db_data_table_sql_works_with_many_options
+------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:09:00.069672"], ["updated_at", "2025-01-24 11:09:00.069672"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.0ms | Allocations: 87)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------
+DatabaseTest: test_insert
+-------------------------
+  [1m[35mSQL (0.0ms)[0m  [1m[31mdelete from projects_users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN delete from projects_users[0m
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM projects_users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32minsert into projects_users(project_id, user_id) values(1,2)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN insert into projects_users(project_id, user_id) values(1,2)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM projects_users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------
+DatabaseTest: test_adapter
+--------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------
+DatabaseTest: test_accessible_tables
+------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+DatabaseTest: test_query
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:09:00.074137"], ["updated_at", "2025-01-24 11:09:00.074137"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect count(*) as users_count from users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select count(*) as users_count from users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------
+DatabaseTest: test_tables
+-------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------
+RailsDbTest: test_verify_access_proc
+------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+RailsDbTest: test_truth
+-----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_true_for_checkbox_status_if_cookie_does_not_contain_record_for_this_table:column
+-----------------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_true_for_checkbox_status_if_cookie_does_not_contain_hash_key_for_this_table
+------------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_false_for_checkbox_status_if_cookie_contains_record_for_this_table:column
+----------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_display_style_column_returns_'display'_if_cookie_does_not_contain_record_for_this_table:column
+----------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_display_style_column_returns_'display:none'_if_cookie_contains_record_for_this_table:column
+-------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------
+SqlImportTest: test_import
+--------------------------
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 11 where id = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 22 where id = 2[0m
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 33 where id = 3[0m
+  [1m[35m (0.0ms)[0m  [1m[35m
+DROP TABLE IF EXISTS t[0m
+  [1m[35m (0.0ms)[0m  [1m[35m
+CREATE TABLE t(x INTEGER, y, z, PRIMARY KEY(x ASC))[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------
+TableTest: test_primary_key
+---------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------
+TableTest: test_delete
+----------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:09:00.077455"], ["updated_at", "2025-01-24 11:09:00.077455"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "john"], ["created_at", "2025-01-24 11:09:00.077663"], ["updated_at", "2025-01-24 11:09:00.077663"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users WHERE id = 1;[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."name" = ?[0m  [["name", "igor"]]
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."name" = ?[0m  [["name", "john"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+TableTest: test_as_table
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:09:00.079109"], ["updated_at", "2025-01-24 11:09:00.079109"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+TableTest: test_columns
+-----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------
+TableTest: test_to_csv
+----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:09:00.081302"], ["updated_at", "2025-01-24 11:09:00.081302"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+TableTest: test_ransack
+-----------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "111"], ["created_at", "2025-01-24 11:09:00.081982"], ["updated_at", "2025-01-24 11:09:00.081982"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "555"], ["created_at", "2025-01-24 11:09:00.082204"], ["updated_at", "2025-01-24 11:09:00.082204"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "333"], ["created_at", "2025-01-24 11:09:00.082408"], ["updated_at", "2025-01-24 11:09:00.082408"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Pluck (0.0ms)[0m  [1m[34mSELECT "users"."name" FROM "users" ORDER BY "users"."name" DESC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+TableTest: test_truncate
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:09:00.084107"], ["updated_at", "2025-01-24 11:09:00.084107"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users;[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------
+DashboardControllerTest: test_should_get_index
+----------------------------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mAccount Delete All (0.0ms)[0m  [1m[31mDELETE FROM "accounts"[0m
+  [1m[36mCustomer Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."type" = ?[0m  [["type", "Customer"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:09:00.093860"], ["updated_at", "2025-01-24 11:09:00.093860"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Edit"], ["created_at", "2025-01-24 11:09:00.094098"], ["updated_at", "2025-01-24 11:09:00.094098"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCustomer Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "bio", "created_at", "updated_at", "type") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Customer 1"], ["bio", "this is bio text"], ["created_at", "2025-01-24 11:09:00.095304"], ["updated_at", "2025-01-24 11:09:00.095304"], ["type", "Customer"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/rails/db" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (Duration: 132.1ms | Allocations: 116528)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 1.4ms | Allocations: 1752)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.6ms | Allocations: 786)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.1ms | Allocations: 275)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.5ms | Allocations: 1172)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 137.8ms | Allocations: 122699)
+Completed 200 OK in 140ms (Views: 138.5ms | ActiveRecord: 0.1ms | Allocations: 124238)
+Started GET "/rails/db/tables/users" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#show as HTML
+  Parameters: {"id" => "users"}
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/show.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.1ms | Allocations: 120)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_show.html.erb (Duration: 3.0ms | Allocations: 6606)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/show.html.erb within layouts/rails_db/application (Duration: 3.1ms | Allocations: 6789)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1004)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 4.4ms | Allocations: 10652)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.8ms | Allocations: 11194)
+Started GET "/rails/db/tables/users/data" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 6.5ms | Allocations: 13947)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.0ms | Allocations: 11609)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 1209)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1004)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1009)
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.1ms | Allocations: 76)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 19.5ms | Allocations: 48941)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 19.7ms | Allocations: 49123)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1005)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 20.8ms | Allocations: 52923)
+Completed 200 OK in 22ms (Views: 20.3ms | ActiveRecord: 0.6ms | Allocations: 54471)
+Started GET "/rails/db/sql" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::SqlController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.2ms | Allocations: 432)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 1.7ms | Allocations: 4115)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1022)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 3.7ms | Allocations: 8673)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.4ms | Allocations: 9128)
+Started GET "/rails/db/import" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::SqlController#import as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/import.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_import_sample.html.erb (Duration: 0.0ms | Allocations: 75)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/import.html.erb within layouts/rails_db/application (Duration: 0.3ms | Allocations: 519)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1021)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 1.4ms | Allocations: 4482)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms | Allocations: 4733)
+Started GET "/rails/db/data-table" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::DashboardController#data_table as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/data_table.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/data_table.html.erb within layouts/rails_db/application (Duration: 0.2ms | Allocations: 904)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1026)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 1.3ms | Allocations: 4872)
+Completed 200 OK in 1ms (Views: 1.4ms | ActiveRecord: 0.0ms | Allocations: 5046)
+Started GET "/" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35mSQL (0.1ms)[0m  [1m[34mSELECT id, name, users_count FROM accounts ORDER BY users_count desc LIMIT 10 OFFSET 0[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.1ms | Allocations: 107)
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect id, name, age from users order by age desc limit 10[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.0ms | Allocations: 39)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mCustomer Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."type" = ?[0m  [["type", "Customer"]]
+  [1m[36mAccount Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "accounts"[0m
+  Rendered home/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 1282)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 2460)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 3310)
+Started GET "/rails/db/tables/users/data?sort_column=id&sort_order=desc" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"sort_column" => "id", "sort_order" => "desc", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.7ms | Allocations: 11610)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.3ms | Allocations: 11607)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1015)
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 17.4ms | Allocations: 44979)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 17.5ms | Allocations: 45024)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1013)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 18.7ms | Allocations: 48848)
+Completed 200 OK in 19ms (Views: 18.2ms | ActiveRecord: 0.6ms | Allocations: 50194)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/destroy?pk_id=1" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#destroy as HTML
+  Parameters: {"pk_id" => "1", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users WHERE id = '1';[0m
+Redirected to http://www.example.com/rails/db/tables/users/data
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 1555)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/csv" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#csv as HTML
+  Parameters: {"table_id" => "users"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 3)
+Sent data users.csv (0.4ms)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 857)
+Started GET "/rails/db/standalone" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::DashboardController#standalone as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/standalone.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/standalone.html.erb within layouts/rails_db/application (Duration: 0.2ms | Allocations: 885)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1026)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 1.3ms | Allocations: 4853)
+Completed 200 OK in 1ms (Views: 1.4ms | ActiveRecord: 0.0ms | Allocations: 5027)
+Started GET "/rails/db/tables/users/xlsx.xls" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#xlsx as XLS
+  Parameters: {"table_id" => "users"}
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/table.xls.axlsx
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/table.xls.axlsx (Duration: 4.5ms | Allocations: 9020)
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data users.xlsx (0.1ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.1ms | Allocations: 9498)
+Started GET "/rails/db/sql?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::SqlController#index as HTML
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.1ms | Allocations: 356)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_explain.html.erb (Duration: 0.1ms | Allocations: 294)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_results.html.erb (Duration: 0.5ms | Allocations: 988)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 2.0ms | Allocations: 4641)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1021)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 3.2ms | Allocations: 8600)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.4ms | Allocations: 9029)
+Started POST "/rails/db/sql-csv.csv?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::SqlController#csv as CSV
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data results.csv (0.1ms)
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms | Allocations: 487)
+Started POST "/rails/db/sql-xls.xls?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::SqlController#xls as XLS
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/xls.xls.axlsx
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/xls.xls.axlsx (Duration: 5.9ms | Allocations: 7121)
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data results.xlsx (0.1ms)
+Completed 200 OK in 6ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 7742)
+Started GET "/rails/db/tables/users/edit?pk_id=2" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#edit as JS
+  Parameters: {"pk_id" => "2", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_edit.html.erb (Duration: 6.1ms | Allocations: 11916)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb (Duration: 6.7ms | Allocations: 15797)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.5ms | Allocations: 21266)
+Started PUT "/rails/db/tables/users/update?pk_id=2" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#update as JS
+  Parameters: {"record" => {"name" => "JOHN"}, "pk_id" => "2", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x000000011f4fe4d8> Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "JOHN"], ["updated_at", "2025-01-24 11:09:00.340407"], ["id", 2]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1032)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb (Duration: 0.7ms | Allocations: 1559)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 7275)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Started GET "/rails/db/tables/users/new" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#new as JS
+  Parameters: {"table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/new.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_new.html.erb (Duration: 2.7ms | Allocations: 6597)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/new.js.erb (Duration: 3.0ms | Allocations: 7791)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.4ms | Allocations: 12740)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started POST "/rails/db/tables/users/create" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#create as JS
+  Parameters: {"record" => {"name" => "XXX"}, "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x000000011e218a30> Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "XXX"], ["created_at", "2025-01-24 11:09:00.348378"], ["updated_at", "2025-01-24 11:09:00.348378"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/create.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.2ms | Allocations: 11613)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.1ms | Allocations: 11607)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1015)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 1010)
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mCACHE  Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 18.1ms | Allocations: 41139)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/create.js.erb (Duration: 18.5ms | Allocations: 44537)
+Completed 200 OK in 21ms (Views: 18.1ms | ActiveRecord: 0.7ms | Allocations: 50400)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/edit?pk_id=3" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#edit as JS
+  Parameters: {"pk_id" => "3", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_edit.html.erb (Duration: 3.7ms | Allocations: 9947)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb (Duration: 4.3ms | Allocations: 13649)
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 0.4ms | Allocations: 18719)
+Started PUT "/rails/db/tables/users/update?pk_id=3" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::TablesController#update as JS
+  Parameters: {"record" => {"name" => "STI"}, "pk_id" => "3", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x000000011e3944e0> Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "STI"], ["updated_at", "2025-01-24 11:09:00.376705"], ["id", 3]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1032)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb (Duration: 0.6ms | Allocations: 1462)
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 6954)
+  [1m[36mCustomer Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."type" = ? AND "users"."id" = ? LIMIT ?[0m  [["type", "Customer"], ["id", 3], ["LIMIT", 1]]
+Started GET "/admin/tools/db" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (Duration: 0.2ms | Allocations: 421)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1038)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.3ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 576)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 1.6ms | Allocations: 4408)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 4581)
+Started GET "/admin/tools/db/sql" for 127.0.0.1 at 2025-01-24 13:09:00 +0200
+Processing by RailsDb::SqlController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.1ms | Allocations: 356)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 1.5ms | Allocations: 3530)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1027)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 576)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 2.7ms | Allocations: 7499)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.4ms | Allocations: 7685)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "accounts"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "accounts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "users_count" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" text, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "contacts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "contacts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_contacts_on_name_and_email" ON "contacts" ("name", "email")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "legacy_accounts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "legacy_accounts" ("uuid" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "payments"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "payments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" decimal, "project_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_payments_on_project_id" ON "payments" ("project_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "projects"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description_821760" varchar, "description_894905" varchar, "description_925884" varchar, "description_793507" varchar, "description_716927" varchar, "description_225695" varchar, "description_993507" varchar, "description_746637" varchar, "description_722954" varchar, "description_943970" varchar, "description_607183" varchar, "description_67050" varchar, "description_502821" varchar, "description_366136" varchar, "description_21974" varchar, "description_294634" varchar, "description_880520" varchar, "description_590228" varchar, "description_773759" varchar, "description_86742" varchar, "amount_292166" integer, "amount_493450" integer, "amount_778861" integer, "amount_668276" integer, "amount_822299" integer, "amount_822310" integer, "amount_578143" integer, "amount_28292" integer, "amount_553573" integer, "amount_531358" integer, "amount_50446" integer, "amount_181381" integer, "amount_707804" integer, "amount_505524" integer, "amount_457876" integer, "amount_205402" integer, "amount_385340" integer, "amount_197313" integer, "amount_931631" integer, "amount_102892" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_on_deleted_at" ON "projects" ("deleted_at")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "projects_users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "projects_users" ("project_id" integer, "user_id" integer)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_projects_users_on_project_id" ON "projects_users" ("project_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_projects_users_on_user_id" ON "projects_users" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "age" integer, "salary" decimal, "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "account_id" integer, "dob" date, "active" boolean DEFAULT 1, "type" varchar, "country" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_account_id" ON "users" ("account_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_users_on_salary" ON "users" ("salary")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210626083314)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180528134358),
+(20170126124628),
+(20151121125538),
+(20151028191429),
+(20151027223149),
+(20151027192250),
+(20151015145740),
+(20151014184243),
+(20151014183823),
+(20151014152932),
+(20151014074655),
+(20151014074454),
+(20151013204027),
+(20151013203757),
+(20151013203739);[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2025-01-24 11:11:14.718126', '2025-01-24 11:11:14.718127') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'b7d28264de6fa06186606efe17daf80015a83360', '2025-01-24 11:11:14.718430', '2025-01-24 11:11:14.718430') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+--------------------------
+SqlImportTest: test_import
+--------------------------
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 11 where id = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 22 where id = 2[0m
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 33 where id = 3[0m
+  [1m[35m (0.0ms)[0m  [1m[35m
+DROP TABLE IF EXISTS t[0m
+  [1m[35m (0.0ms)[0m  [1m[35m
+CREATE TABLE t(x INTEGER, y, z, PRIMARY KEY(x ASC))[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_true_for_checkbox_status_if_cookie_does_not_contain_record_for_this_table:column
+-----------------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_display_style_column_returns_'display'_if_cookie_does_not_contain_record_for_this_table:column
+----------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_false_for_checkbox_status_if_cookie_contains_record_for_this_table:column
+----------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_true_for_checkbox_status_if_cookie_does_not_contain_hash_key_for_this_table
+------------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_display_style_column_returns_'display:none'_if_cookie_contains_record_for_this_table:column
+-------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+RailsDbTest: test_truth
+-----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------
+RailsDbTest: test_verify_access_proc
+------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------------------
+RailsDbHelpersTest: test_default_rails_db_data_table_sql_works
+--------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:11:14.772500"], ["updated_at", "2025-01-24 11:11:14.772500"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.3ms | Allocations: 495)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------
+RailsDbHelpersTest: test_default_rails_db_data_table_works
+----------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:11:15.194468"], ["updated_at", "2025-01-24 11:11:15.194468"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.6ms | Allocations: 1142)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------------
+RailsDbHelpersTest: test_rails_db_data_table_sql_works_with_many_options
+------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:11:15.196277"], ["updated_at", "2025-01-24 11:11:15.196277"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.0ms | Allocations: 87)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------------------------
+RailsDbHelpersTest: test_rails_db_data_table_works_with_many_options
+--------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["age", 9999], ["created_at", "2025-01-24 11:11:15.196827"], ["updated_at", "2025-01-24 11:11:15.196827"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT id, name FROM users ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.1ms | Allocations: 119)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------
+DatabaseTest: test_accessible_tables
+------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------
+DatabaseTest: test_adapter
+--------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------
+DatabaseTest: test_insert
+-------------------------
+  [1m[35mSQL (0.0ms)[0m  [1m[31mdelete from projects_users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN delete from projects_users[0m
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM projects_users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32minsert into projects_users(project_id, user_id) values(1,2)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN insert into projects_users(project_id, user_id) values(1,2)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM projects_users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+DatabaseTest: test_query
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:11:15.201445"], ["updated_at", "2025-01-24 11:11:15.201445"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect count(*) as users_count from users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select count(*) as users_count from users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------
+DatabaseTest: test_tables
+-------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------
+TableTest: test_delete
+----------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:11:15.202358"], ["updated_at", "2025-01-24 11:11:15.202358"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "john"], ["created_at", "2025-01-24 11:11:15.202568"], ["updated_at", "2025-01-24 11:11:15.202568"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users WHERE id = 1;[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."name" = ?[0m  [["name", "igor"]]
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."name" = ?[0m  [["name", "john"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+TableTest: test_columns
+-----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------
+TableTest: test_primary_key
+---------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------
+TableTest: test_to_csv
+----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:11:15.204516"], ["updated_at", "2025-01-24 11:11:15.204516"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+TableTest: test_ransack
+-----------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "111"], ["created_at", "2025-01-24 11:11:15.205163"], ["updated_at", "2025-01-24 11:11:15.205163"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "555"], ["created_at", "2025-01-24 11:11:15.205362"], ["updated_at", "2025-01-24 11:11:15.205362"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "333"], ["created_at", "2025-01-24 11:11:15.205570"], ["updated_at", "2025-01-24 11:11:15.205570"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Pluck (0.0ms)[0m  [1m[34mSELECT "users"."name" FROM "users" ORDER BY "users"."name" DESC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+TableTest: test_truncate
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:11:15.207462"], ["updated_at", "2025-01-24 11:11:15.207462"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users;[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+TableTest: test_as_table
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-01-24 11:11:15.207999"], ["updated_at", "2025-01-24 11:11:15.207999"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------
+DashboardControllerTest: test_should_get_index
+----------------------------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mAccount Delete All (0.0ms)[0m  [1m[31mDELETE FROM "accounts"[0m
+  [1m[36mCustomer Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."type" = ?[0m  [["type", "Customer"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-01-24 11:11:15.220330"], ["updated_at", "2025-01-24 11:11:15.220330"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Edit"], ["created_at", "2025-01-24 11:11:15.220593"], ["updated_at", "2025-01-24 11:11:15.220593"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCustomer Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "bio", "created_at", "updated_at", "type") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Customer 1"], ["bio", "this is bio text"], ["created_at", "2025-01-24 11:11:15.221878"], ["updated_at", "2025-01-24 11:11:15.221878"], ["type", "Customer"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/rails/db" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (Duration: 15.2ms | Allocations: 29712)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 1.3ms | Allocations: 1756)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.4ms | Allocations: 786)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.1ms | Allocations: 275)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.6ms | Allocations: 1172)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 21.4ms | Allocations: 35879)
+Completed 200 OK in 23ms (Views: 22.1ms | ActiveRecord: 0.1ms | Allocations: 37419)
+Started GET "/rails/db/tables/users" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#show as HTML
+  Parameters: {"id" => "users"}
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/show.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.1ms | Allocations: 119)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_show.html.erb (Duration: 2.8ms | Allocations: 6607)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/show.html.erb within layouts/rails_db/application (Duration: 3.1ms | Allocations: 6790)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1004)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.1ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 4.4ms | Allocations: 10652)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.9ms | Allocations: 11194)
+Started GET "/rails/db/tables/users/data" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 6.3ms | Allocations: 14022)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 14.1ms | Allocations: 11610)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.8ms | Allocations: 1212)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1004)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1009)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.1ms | Allocations: 76)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 30.4ms | Allocations: 48621)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 30.7ms | Allocations: 48803)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1012)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 32.0ms | Allocations: 52619)
+Completed 200 OK in 33ms (Views: 31.5ms | ActiveRecord: 0.7ms | Allocations: 54125)
+Started GET "/rails/db/sql" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::SqlController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.2ms | Allocations: 432)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 1.9ms | Allocations: 4112)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1022)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 4.1ms | Allocations: 8677)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.4ms | Allocations: 9132)
+Started GET "/rails/db/import" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::SqlController#import as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/import.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_import_sample.html.erb (Duration: 0.0ms | Allocations: 75)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/import.html.erb within layouts/rails_db/application (Duration: 0.4ms | Allocations: 523)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1021)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.3ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 1.7ms | Allocations: 4486)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 4737)
+Started GET "/rails/db/data-table" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::DashboardController#data_table as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/data_table.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/data_table.html.erb within layouts/rails_db/application (Duration: 0.3ms | Allocations: 904)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1030)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 1.5ms | Allocations: 4876)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 5050)
+Started GET "/" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT id, name, users_count FROM accounts ORDER BY users_count desc LIMIT 10 OFFSET 0[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.1ms | Allocations: 107)
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect id, name, age from users order by age desc limit 10[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.0ms | Allocations: 39)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mCustomer Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."type" = ?[0m  [["type", "Customer"]]
+  [1m[36mAccount Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "accounts"[0m
+  Rendered home/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 1278)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | Allocations: 2862)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 3830)
+Started GET "/rails/db/tables/users/data?sort_column=id&sort_order=desc" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"sort_column" => "id", "sort_order" => "desc", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.4ms | Allocations: 11609)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 7.4ms | Allocations: 11605)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 1.2ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.9ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 1015)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 35.9ms | Allocations: 44577)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 35.9ms | Allocations: 44622)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.7ms | Allocations: 1013)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.3ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.6ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.7ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 38.4ms | Allocations: 48439)
+Completed 200 OK in 39ms (Views: 37.5ms | ActiveRecord: 1.1ms | Allocations: 49754)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/destroy?pk_id=1" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#destroy as HTML
+  Parameters: {"pk_id" => "1", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users WHERE id = '1';[0m
+Redirected to http://www.example.com/rails/db/tables/users/data
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms | Allocations: 1527)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/csv" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#csv as HTML
+  Parameters: {"table_id" => "users"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 3)
+Sent data users.csv (0.5ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 860)
+Started GET "/rails/db/standalone" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::DashboardController#standalone as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/standalone.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/standalone.html.erb within layouts/rails_db/application (Duration: 0.6ms | Allocations: 885)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.5ms | Allocations: 1030)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.6ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.3ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 2.8ms | Allocations: 4857)
+Completed 200 OK in 3ms (Views: 3.0ms | ActiveRecord: 0.0ms | Allocations: 5031)
+Started GET "/rails/db/tables/users/xlsx.xls" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#xlsx as XLS
+  Parameters: {"table_id" => "users"}
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/table.xls.axlsx
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/table.xls.axlsx (Duration: 3.4ms | Allocations: 5962)
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data users.xlsx (0.1ms)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.1ms | Allocations: 6444)
+Started GET "/rails/db/sql?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::SqlController#index as HTML
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.1ms | Allocations: 356)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_explain.html.erb (Duration: 0.2ms | Allocations: 294)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_results.html.erb (Duration: 0.7ms | Allocations: 989)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 2.3ms | Allocations: 4645)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1028)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.2ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.3ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 3.9ms | Allocations: 8621)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.4ms | Allocations: 9050)
+Started POST "/rails/db/sql-csv.csv?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::SqlController#csv as CSV
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data results.csv (0.1ms)
+Completed 200 OK in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms | Allocations: 491)
+Started POST "/rails/db/sql-xls.xls?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::SqlController#xls as XLS
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/xls.xls.axlsx
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/xls.xls.axlsx (Duration: 1.3ms | Allocations: 3023)
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data results.xlsx (0.1ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 3647)
+Started GET "/rails/db/tables/users/edit?pk_id=2" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#edit as JS
+  Parameters: {"pk_id" => "2", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_edit.html.erb (Duration: 5.9ms | Allocations: 11846)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb (Duration: 6.6ms | Allocations: 15725)
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 0.5ms | Allocations: 21193)
+Started PUT "/rails/db/tables/users/update?pk_id=2" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#update as JS
+  Parameters: {"record" => {"name" => "JOHN"}, "pk_id" => "2", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x00000001205b79f0> Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "JOHN"], ["updated_at", "2025-01-24 11:11:15.376194"], ["id", 2]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.6ms | Allocations: 1035)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb (Duration: 0.8ms | Allocations: 1562)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 7278)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Started GET "/rails/db/tables/users/new" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#new as JS
+  Parameters: {"table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/new.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_new.html.erb (Duration: 6.5ms | Allocations: 6601)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/new.js.erb (Duration: 6.8ms | Allocations: 7794)
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.4ms | Allocations: 12742)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started POST "/rails/db/tables/users/create" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#create as JS
+  Parameters: {"record" => {"name" => "XXX"}, "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x0000000125bd5968> Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "XXX"], ["created_at", "2025-01-24 11:11:15.388709"], ["updated_at", "2025-01-24 11:11:15.388709"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/create.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.1ms | Allocations: 11613)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.0ms | Allocations: 11605)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1015)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 5.0ms | Allocations: 1011)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 19.7ms | Allocations: 40745)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/create.js.erb (Duration: 20.2ms | Allocations: 44143)
+Completed 200 OK in 23ms (Views: 15.3ms | ActiveRecord: 5.2ms | Allocations: 49976)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/edit?pk_id=3" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#edit as JS
+  Parameters: {"pk_id" => "3", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_edit.html.erb (Duration: 4.0ms | Allocations: 9933)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb (Duration: 4.4ms | Allocations: 13635)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.6ms | Allocations: 18685)
+Started PUT "/rails/db/tables/users/update?pk_id=3" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::TablesController#update as JS
+  Parameters: {"record" => {"name" => "STI"}, "pk_id" => "3", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x000000011fb10290> Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "STI"], ["updated_at", "2025-01-24 11:11:15.419523"], ["id", 3]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1035)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb (Duration: 0.6ms | Allocations: 1465)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 6958)
+  [1m[36mCustomer Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."type" = ? AND "users"."id" = ? LIMIT ?[0m  [["type", "Customer"], ["id", 3], ["LIMIT", 1]]
+Started GET "/admin/tools/db" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (Duration: 0.2ms | Allocations: 414)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1042)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 576)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 1.6ms | Allocations: 4405)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 4578)
+Started GET "/admin/tools/db/sql" for 127.0.0.1 at 2025-01-24 13:11:15 +0200
+Processing by RailsDb::SqlController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.1ms | Allocations: 356)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 1.5ms | Allocations: 3532)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1027)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 576)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 2.7ms | Allocations: 7501)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 7687)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------
+DashboardControllerTest: test_should_get_index
+----------------------------------------------
+  [1m[36mUser Delete All (0.2ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mAccount Delete All (0.0ms)[0m  [1m[31mDELETE FROM "accounts"[0m
+  [1m[36mCustomer Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."type" = ?[0m  [["type", "Customer"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-07-09 19:46:51.045926"], ["updated_at", "2025-07-09 19:46:51.045926"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Edit"], ["created_at", "2025-07-09 19:46:51.046447"], ["updated_at", "2025-07-09 19:46:51.046447"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCustomer Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "bio", "created_at", "updated_at", "type") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Customer 1"], ["bio", "this is bio text"], ["created_at", "2025-07-09 19:46:51.047817"], ["updated_at", "2025-07-09 19:46:51.047817"], ["type", "Customer"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/rails/db" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (Duration: 85.1ms | Allocations: 71050)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.9ms | Allocations: 730)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 1.4ms | Allocations: 1771)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.4ms | Allocations: 800)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.1ms | Allocations: 274)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.5ms | Allocations: 1171)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 91.3ms | Allocations: 76813)
+Completed 200 OK in 544ms (Views: 93.2ms | ActiveRecord: 0.1ms | Allocations: 1054873)
+Started GET "/rails/db/tables/users" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#show as HTML
+  Parameters: {"id" => "users"}
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/show.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.1ms | Allocations: 119)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_show.html.erb (Duration: 2.7ms | Allocations: 6634)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/show.html.erb within layouts/rails_db/application (Duration: 2.8ms | Allocations: 6817)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.7ms | Allocations: 422)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1007)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 4.6ms | Allocations: 9756)
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.8ms | Allocations: 10304)
+Started GET "/rails/db/tables/users/data" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 11.8ms | Allocations: 14027)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.8ms | Allocations: 11611)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 1212)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1004)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1009)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.1ms | Allocations: 76)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 26.1ms | Allocations: 48704)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 26.3ms | Allocations: 48886)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.7ms | Allocations: 422)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.5ms | Allocations: 1023)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 28.2ms | Allocations: 51778)
+Completed 200 OK in 31ms (Views: 27.7ms | ActiveRecord: 0.6ms | Allocations: 53697)
+Started GET "/rails/db/sql" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::SqlController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.1ms | Allocations: 194)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 1.8ms | Allocations: 3879)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.7ms | Allocations: 422)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1025)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 4.2ms | Allocations: 7516)
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.4ms | Allocations: 7976)
+Started GET "/rails/db/import" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::SqlController#import as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/import.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_import_sample.html.erb (Duration: 0.0ms | Allocations: 75)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/import.html.erb within layouts/rails_db/application (Duration: 0.3ms | Allocations: 523)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.7ms | Allocations: 422)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.3ms | Allocations: 1024)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 2.0ms | Allocations: 3563)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 3814)
+Started GET "/rails/db/data-table" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::DashboardController#data_table as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/data_table.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/data_table.html.erb within layouts/rails_db/application (Duration: 0.2ms | Allocations: 904)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.6ms | Allocations: 423)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 1.4ms | Allocations: 1030)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.7ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.9ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 4.2ms | Allocations: 3954)
+Completed 200 OK in 4ms (Views: 4.2ms | ActiveRecord: 0.0ms | Allocations: 4128)
+Started GET "/" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT id, name, users_count FROM accounts ORDER BY users_count desc LIMIT 10 OFFSET 0[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.8ms | Allocations: 480)
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect id, name, age from users order by age desc limit 10[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 1.2ms | Allocations: 350)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mCustomer Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."type" = ?[0m  [["type", "Customer"]]
+  [1m[36mAccount Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "accounts"[0m
+  Rendered home/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 2212)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 3803)
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.2ms | Allocations: 4769)
+Started GET "/rails/db/tables/users/data?sort_column=id&sort_order=desc" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"sort_column" => "id", "sort_order" => "desc", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 16.0ms | Allocations: 11607)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 8.1ms | Allocations: 11607)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1015)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 32.9ms | Allocations: 44597)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (Duration: 32.9ms | Allocations: 44642)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.7ms | Allocations: 422)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.5ms | Allocations: 1025)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 571)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 34.9ms | Allocations: 47536)
+Completed 200 OK in 37ms (Views: 34.3ms | ActiveRecord: 0.7ms | Allocations: 48850)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/destroy?pk_id=1" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#destroy as HTML
+  Parameters: {"pk_id" => "1", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users WHERE id = '1';[0m
+Redirected to http://www.example.com/rails/db/tables/users/data
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms | Allocations: 1542)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/csv" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#csv as HTML
+  Parameters: {"table_id" => "users"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 3)
+Sent data users.csv (0.6ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 921)
+Started GET "/rails/db/standalone" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::DashboardController#standalone as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/standalone.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/standalone.html.erb within layouts/rails_db/application (Duration: 0.3ms | Allocations: 886)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.8ms | Allocations: 423)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1029)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 2.5ms | Allocations: 3935)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 4109)
+Started GET "/rails/db/tables/users/xlsx.xls" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#xlsx as XLS
+  Parameters: {"table_id" => "users"}
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/table.xls.axlsx
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/table.xls.axlsx (Duration: 2.0ms | Allocations: 5947)
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data users.xlsx (0.1ms)
+Completed 200 OK in 2ms (Views: 2.3ms | ActiveRecord: 0.1ms | Allocations: 6429)
+Started GET "/rails/db/sql?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::SqlController#index as HTML
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.1ms | Allocations: 136)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_explain.html.erb (Duration: 0.1ms | Allocations: 295)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_results.html.erb (Duration: 0.5ms | Allocations: 988)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 2.0ms | Allocations: 4424)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.7ms | Allocations: 422)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.5ms | Allocations: 1024)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.3ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 572)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 4.0ms | Allocations: 7460)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.5ms | Allocations: 7897)
+Started POST "/rails/db/sql-csv.csv?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::SqlController#csv as CSV
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data results.csv (0.1ms)
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 490)
+Started POST "/rails/db/sql-xls.xls?sql=select+%2A+from+users+limit+10" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::SqlController#xls as XLS
+  Parameters: {"sql" => "select * from users limit 10"}
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users limit 10[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select * from users limit 10[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/xls.xls.axlsx
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/xls.xls.axlsx (Duration: 1.3ms | Allocations: 3023)
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Sent data results.xlsx (0.1ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 3647)
+Started GET "/rails/db/tables/users/edit?pk_id=2" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#edit as JS
+  Parameters: {"pk_id" => "2", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_edit.html.erb (Duration: 5.9ms | Allocations: 11848)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb (Duration: 6.7ms | Allocations: 15727)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.5ms | Allocations: 21197)
+Started PUT "/rails/db/tables/users/update?pk_id=2" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#update as JS
+  Parameters: {"record" => {"name" => "JOHN"}, "pk_id" => "2", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x00000001239a0f00> Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "JOHN"], ["updated_at", "2025-07-09 19:46:51.735962"], ["id", 2]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1035)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb (Duration: 0.7ms | Allocations: 1562)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 7285)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Started GET "/rails/db/tables/users/new" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#new as JS
+  Parameters: {"table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/new.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_new.html.erb (Duration: 2.6ms | Allocations: 6600)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/new.js.erb (Duration: 3.0ms | Allocations: 7793)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.4ms | Allocations: 12742)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started POST "/rails/db/tables/users/create" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#create as JS
+  Parameters: {"record" => {"name" => "XXX"}, "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x0000000124383ae0> Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "XXX"], ["created_at", "2025-07-09 19:46:51.743979"], ["updated_at", "2025-07-09 19:46:51.743979"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/create.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.4ms | Allocations: 11609)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_condition_fields.html.erb (Duration: 4.3ms | Allocations: 11605)
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.7ms | Allocations: 1015)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.4ms | Allocations: 1010)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_sql.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_data.html.erb (Duration: 16.4ms | Allocations: 40742)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/create.js.erb (Duration: 17.2ms | Allocations: 44140)
+Completed 200 OK in 19ms (Views: 16.5ms | ActiveRecord: 0.9ms | Allocations: 49974)
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started GET "/rails/db/tables/users/edit?pk_id=3" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#edit as JS
+  Parameters: {"pk_id" => "3", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_edit.html.erb (Duration: 3.5ms | Allocations: 9917)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/edit.js.erb (Duration: 4.0ms | Allocations: 13619)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.4ms | Allocations: 18645)
+Started PUT "/rails/db/tables/users/update?pk_id=3" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::TablesController#update as JS
+  Parameters: {"record" => {"name" => "STI"}, "pk_id" => "3", "table_id" => "users"}
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36m#<Class:0x000000012626a1e8> Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "STI"], ["updated_at", "2025-07-09 19:46:51.770606"], ["id", 3]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/_row.html.erb (Duration: 0.5ms | Allocations: 1035)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/tables/update.js.erb (Duration: 0.7ms | Allocations: 1465)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 6958)
+  [1m[36mCustomer Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."type" = ? AND "users"."id" = ? LIMIT ?[0m  [["type", "Customer"], ["id", 3], ["LIMIT", 1]]
+Started GET "/admin/tools/db" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (Duration: 0.2ms | Allocations: 421)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.8ms | Allocations: 423)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1041)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.3ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.3ms | Allocations: 576)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 2.3ms | Allocations: 3481)
+Completed 200 OK in 2ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 3654)
+Started GET "/admin/tools/db/sql" for 127.0.0.1 at 2025-07-09 22:46:51 +0300
+Processing by RailsDb::SqlController#index as HTML
+  Rendering layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb
+  Rendering /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_exp_col.html.erb (Duration: 0.0ms | Allocations: 17)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/_history.html.erb (Duration: 0.1ms | Allocations: 128)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/sql/index.html.erb within layouts/rails_db/application (Duration: 1.5ms | Allocations: 3304)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_assets.html.erb (Duration: 0.7ms | Allocations: 422)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_header.html.erb (Duration: 0.4ms | Allocations: 1030)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sidebar.html.erb (Duration: 0.2ms | Allocations: 586)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_gems.html.erb (Duration: 0.0ms | Allocations: 104)
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_footer.html.erb (Duration: 0.2ms | Allocations: 576)
+  Rendered layout /Users/igor/projects/rails_db/app/views/layouts/rails_db/application.html.erb (Duration: 3.2ms | Allocations: 6350)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.4ms | Allocations: 6536)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------
+SqlImportTest: test_import
+--------------------------
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 11 where id = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 22 where id = 2[0m
+  [1m[35m (0.0ms)[0m  [1m[33mupdate users set age = 33 where id = 3[0m
+  [1m[35m (0.0ms)[0m  [1m[35m
+DROP TABLE IF EXISTS t[0m
+  [1m[35m (0.0ms)[0m  [1m[35m
+CREATE TABLE t(x INTEGER, y, z, PRIMARY KEY(x ASC))[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+TableTest: test_as_table
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-07-09 19:46:51.783821"], ["updated_at", "2025-07-09 19:46:51.783821"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+TableTest: test_columns
+-----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------
+TableTest: test_delete
+----------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-07-09 19:46:51.786168"], ["updated_at", "2025-07-09 19:46:51.786168"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "john"], ["created_at", "2025-07-09 19:46:51.786416"], ["updated_at", "2025-07-09 19:46:51.786416"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users WHERE id = 1;[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."name" = ?[0m  [["name", "igor"]]
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."name" = ?[0m  [["name", "john"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+TableTest: test_truncate
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-07-09 19:46:51.787317"], ["updated_at", "2025-07-09 19:46:51.787317"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mDELETE FROM users;[0m
+  [1m[36mUser Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+TableTest: test_ransack
+-----------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "111"], ["created_at", "2025-07-09 19:46:51.787906"], ["updated_at", "2025-07-09 19:46:51.787906"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "555"], ["created_at", "2025-07-09 19:46:51.788133"], ["updated_at", "2025-07-09 19:46:51.788133"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "333"], ["created_at", "2025-07-09 19:46:51.788350"], ["updated_at", "2025-07-09 19:46:51.788350"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36m Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36m Pluck (0.0ms)[0m  [1m[34mSELECT "users"."name" FROM "users" ORDER BY "users"."name" DESC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------
+TableTest: test_to_csv
+----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "igor"], ["created_at", "2025-07-09 19:46:51.789171"], ["updated_at", "2025-07-09 19:46:51.789171"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------
+TableTest: test_primary_key
+---------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------------------
+RailsDbHelpersTest: test_default_rails_db_data_table_sql_works
+--------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-07-09 19:46:51.790309"], ["updated_at", "2025-07-09 19:46:51.790309"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.0ms | Allocations: 61)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------
+RailsDbHelpersTest: test_default_rails_db_data_table_works
+----------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-07-09 19:46:51.791040"], ["updated_at", "2025-07-09 19:46:51.791040"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT * FROM users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.3ms | Allocations: 772)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------------
+RailsDbHelpersTest: test_rails_db_data_table_sql_works_with_many_options
+------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-07-09 19:46:51.791905"], ["updated_at", "2025-07-09 19:46:51.791905"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect * from users[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_sql_result.html.erb (Duration: 0.0ms | Allocations: 87)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------------------------
+RailsDbHelpersTest: test_rails_db_data_table_works_with_many_options
+--------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["age", 9999], ["created_at", "2025-07-09 19:46:51.792438"], ["updated_at", "2025-07-09 19:46:51.792438"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT id, name FROM users ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  Rendered /Users/igor/projects/rails_db/app/views/rails_db/shared/_data_table.html.erb (Duration: 0.1ms | Allocations: 117)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_display_style_column_returns_'display:none'_if_cookie_contains_record_for_this_table:column
+-------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_true_for_checkbox_status_if_cookie_does_not_contain_hash_key_for_this_table
+------------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_false_for_checkbox_status_if_cookie_contains_record_for_this_table:column
+----------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_display_style_column_returns_'display'_if_cookie_does_not_contain_record_for_this_table:column
+----------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------------------------------------------------------------------------------------------------------
+TablesHelperTest: test_method_column_is_checked?_returns_true_for_checkbox_status_if_cookie_does_not_contain_record_for_this_table:column
+-----------------------------------------------------------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------
+DatabaseTest: test_tables
+-------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------
+DatabaseTest: test_accessible_tables
+------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------
+DatabaseTest: test_insert
+-------------------------
+  [1m[35mSQL (0.7ms)[0m  [1m[31mdelete from projects_users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN delete from projects_users[0m
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM projects_users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32minsert into projects_users(project_id, user_id) values(1,2)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN insert into projects_users(project_id, user_id) values(1,2)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM projects_users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------
+DatabaseTest: test_query
+------------------------
+  [1m[36mUser Delete All (0.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "Igor"], ["created_at", "2025-07-09 19:46:51.795769"], ["updated_at", "2025-07-09 19:46:51.795769"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[34mselect count(*) as users_count from users[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mEXPLAIN select count(*) as users_count from users[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------
+DatabaseTest: test_adapter
+--------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------
+RailsDbTest: test_truth
+-----------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------
+RailsDbTest: test_verify_access_proc
+------------------------------------
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m

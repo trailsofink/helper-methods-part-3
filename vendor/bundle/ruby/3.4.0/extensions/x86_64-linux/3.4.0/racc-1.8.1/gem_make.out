@@ -1,0 +1,18 @@
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/racc-1.8.1/ext/racc/cparse
+/home/joel/.rbenv/versions/3.4.1/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4w0dzg sitelibdir\=./.gem.20250805-194359-4w0dzg clean
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4w0dzg sitelibdir\=./.gem.20250805-194359-4w0dzg
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4w0dzg sitelibdir\=./.gem.20250805-194359-4w0dzg install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20250805-194359-4w0dzg/racc
+
+current directory: /home/joel/workspaces/dpi_sdf/helper-methods-part-3/vendor/bundle/ruby/3.4.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250805-194359-4w0dzg sitelibdir\=./.gem.20250805-194359-4w0dzg clean
